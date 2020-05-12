@@ -1,0 +1,13 @@
+int i;
+
+for i in 1..100{
+    if i % 15 == 0{
+        println("fizzbuzz");
+    } elif i % 3 == 0 {
+        println("fizz");
+    } elif i % 5 == 0 {
+        println("buzz");
+    } else {
+        println(i);
+    };
+};
