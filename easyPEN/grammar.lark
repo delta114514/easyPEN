@@ -27,7 +27,7 @@ optional_if:  elif_* else_?
 if_state: "if" expr "{" program "}" optional_if
 while_state: "while" expr "{" program "}"
 until_state: "until" expr "{" program "}"
-for_state: "for" symbol "in" number ".." number ( "by" number)? "{" program "}"
+for_state: "for" symbol "in" expr ".." expr ( "by" number)? "{" program "}"
 break_state: "break"
 
 
@@ -37,8 +37,8 @@ break_state: "break"
      | addition
      | substraction
      | function_call
-addition: expr "+" term
-substraction: expr "-" term
+addition: expr "+" expr
+substraction: expr "-" expr
 function_call: symbol "(" [expr ("," expr)*] ")"
 
 ?condition: test

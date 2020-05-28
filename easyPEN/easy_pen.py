@@ -1,5 +1,6 @@
 import os
 import lark
+import re
 
 grammar = os.path.join(os.path.dirname(__file__), 'grammar.lark')
 
@@ -97,7 +98,7 @@ class NPENTrasnformer(lark.Transformer):
         return '{} + {}'.format(items[0], items[1])
 
     def break_state(self, items):
-        return 'くり返しを抜ける'
+        return '繰り返しを抜ける'
 
     def for_state(self, items):
         if len(items) == 5:
@@ -224,8 +225,7 @@ class Parser:
                     walk(state, indent)
 
         walk(self.parsed)
-
-        self.result = ''.join(result)
+        self.result = re.sub(r'(  \| .+)(\n\n)  \| ', r'\g<1>\n  | ', ''.join(result))
 
     def output(self):
         with open(self.output_, 'w', encoding=self.encoding) as f:
